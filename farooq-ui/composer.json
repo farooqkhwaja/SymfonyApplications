@@ -1,0 +1,5 @@
+{
+    "require": {
+        "symfonycasts/tailwind-bundle": "^1.0"
+    }
+}

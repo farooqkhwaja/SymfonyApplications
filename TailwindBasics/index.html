@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/src/style.css" rel="stylesheet">
+  <title>tailwindbasics</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <div
+    class="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+    <img class="size-12 shrink-0" src="/img/logo.svg" alt="ChitChat Logo" />
+    <div>
+      <div class="text-xl font-medium text-black dark:text-white">ChitChat</div>
+      <p class="text-gray-500 dark:text-gray-400">You have a new message!</p>
+    </div>
+  </div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

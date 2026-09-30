@@ -1,0 +1,38 @@
+{
+  "name": "farooq-ui",
+  "version": "1.0.0",
+  "main": "./dist/farooq-ui.cjs",
+  "module": "./dist/farooq-ui.js",
+  "exports": {
+    ".": {
+      "import": "./dist/farooq-ui.mjs",
+      "require": "./dist/farooq-ui.cjs"
+    },
+    "./style.css": "./dist/farooq-ui.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "tailwind",
+    "tailwindcss"
+  ],
+  "author": "Farooq",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "react": "^19.3.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "vite": "^8.3.1"
+  }
+}
