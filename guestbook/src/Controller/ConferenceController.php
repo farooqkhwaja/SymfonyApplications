@@ -6,7 +6,6 @@ use App\Entity\Comment;
 use App\Entity\Conference;
 use App\Form\CommentType;
 use App\Message\CommentMessage;
-use App\Repository\CommentRepository;
 use App\Repository\ConferenceRepository;
 use App\SpamChecker;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,7 +20,6 @@ use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\UX\Pagination\PaginatorInterface;
 
 
 final class ConferenceController extends AbstractController
@@ -60,9 +58,7 @@ final class ConferenceController extends AbstractController
      public function show(
         Request $request,
         Conference $conference,
-        CommentRepository $commentRepository,
         NotifierInterface $notifier,
-        PaginatorInterface $paginator,
         #[Autowire('%photo_dir%')] string $photoDir,
     ): Response {
         $comment = new Comment();
@@ -86,7 +82,7 @@ final class ConferenceController extends AbstractController
                 'referrer' => $request->headers->get('referer'),
                 'permalink' => $request->getUri(),
             ];
-
+            
             $reviewUrl = $this->generateUrl('review_comment', ['id' => $comment->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
             $this->bus->dispatch(new CommentMessage($comment->getId(), $reviewUrl, $context));
 
@@ -99,14 +95,9 @@ final class ConferenceController extends AbstractController
            $notifier->send(new Notification('Can you check your submission? There are some problems with it.', ['browser']));
         }
         
-        $comments = $paginator
-            ->query($commentRepository->createPublishedByConferenceQueryBuilder($conference))
-            ->perPage(CommentRepository::COMMENTS_PER_PAGE)
-            ->paginate();
-
+        // the comments are rendered (and paginated) by the CommentList live component
         return $this->render('conference/show.html.twig', [
             'conference' => $conference,
-            'comments' => $comments,
             'comment_form' => $form,
         ]);
     }
