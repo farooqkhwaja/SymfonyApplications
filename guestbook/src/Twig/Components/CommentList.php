@@ -23,7 +23,7 @@ final class CommentList
     // Not writable: the browser sends it back signed, so it cannot be swapped for another conference
     #[LiveProp]
     public Conference $conference;
-
+    
     public function __construct(
         private readonly PaginatorInterface $paginator,
         private readonly CommentRepository $commentRepository,
