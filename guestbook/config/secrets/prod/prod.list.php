@@ -1,0 +1,8 @@
+<?php
+
+return [
+    'BLACKFIRE_SERVER_ID' => null,
+    'BLACKFIRE_SERVER_TOKEN' => null,
+    'OPENAI_API_KEY' => null,
+    'SLACK_DSN' => null,
+];

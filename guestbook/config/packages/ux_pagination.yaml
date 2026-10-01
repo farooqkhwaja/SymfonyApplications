@@ -1,0 +1,3 @@
+ux_pagination:
+    # Bootstrap 5 markup, matching the rest of the site
+    theme: '@UXPagination/theme/bootstrap.html.twig'
